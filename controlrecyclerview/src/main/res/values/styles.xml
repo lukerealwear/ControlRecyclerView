@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="VoiceCommandPrimary" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/VoiceCommandMedium</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="VoiceCommandPrimaryDisabled" parent="VoiceCommandPrimary">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="VoiceCommandLarge" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/VoiceCommandLarge</item>
+    </style>
+
+    <style name="VoiceCommandLargeDisabled" parent="VoiceCommandLarge">
+        <item name="android:textColor">@color/tertiaryTextColor</item>
+    </style>
+
+    <style name="VoiceCommandHint" parent="VoiceCommandPrimary">
+        <item name="android:textSize">@dimen/VoiceCommandSmall</item>
+        <item name="android:textColor">@color/tertiaryTextColor</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="ControlState" parent="Theme.AppCompat.Light">
+        <item name="android:textColor">@color/tertiaryTextColor</item>
+        <item name="android:textSize">@dimen/HintSmallest</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="SubControlVoiceCommand" parent="VoiceCommandPrimary">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/VoiceCommandSmall</item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
+    </style>
+
+    <style name="SubControlVoiceCommandDisable" parent="SubControlVoiceCommand">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+</resources>

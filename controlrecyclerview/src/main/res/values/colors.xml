@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#4E3B95</color>
+    <color name="colorAccent">#4E3B95</color>
+
+    <color name="secondaryTextColor">#666666</color>
+    <color name="tertiaryTextColor">#999999</color>
+    <color name="disableTextColor">#CCCCCC</color>
+
+    <color name="widgetBorderColor">#CCCCCB</color>
+    <color name="voiceHintBackground">#E7E7E7</color>
+
+</resources>

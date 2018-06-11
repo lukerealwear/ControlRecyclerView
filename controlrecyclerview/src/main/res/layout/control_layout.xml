@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:animateLayoutChanges="true"
+    android:background="@android:color/white"
+    android:layout_centerInParent="true"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:padding="18dp"
+    android:layout_width="@dimen/WidgetWidth"  android:layout_height="@dimen/WidgetHeight">
+
+    <RelativeLayout
+        android:id="@+id/widget"
+        android:layout_centerInParent="true"
+        android:animateLayoutChanges="true"
+        android:background="@drawable/control_border"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/icon_image"
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:layout_gravity="center_horizontal"
+            android:animateLayoutChanges="true"
+            android:src="@drawable/ic_clear_black_24dp" />
+
+        <LinearLayout
+
+            android:id="@+id/widgetSelected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/icon_image"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/icon_text"
+                style="@style/VoiceCommandLargeDisabled"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:paddingLeft="8dip"
+                android:paddingTop="8dip"
+                android:paddingRight="8dip"
+                android:text="Sample" />
+
+            <TextView
+                style="@style/ControlState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="38dip"
+                android:gravity="center_horizontal"
+                android:paddingLeft="8dip"
+                android:paddingRight="8dip"
+                android:text="State" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical"
+            android:id="@+id/controlHolder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></LinearLayout>
+
+    </RelativeLayout>
+</RelativeLayout>
+
+    <!--<LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/mainLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/WidgetWidthLarge">
+
+    <RelativeLayout
+        android:id="@+id/widget"
+        android:animateLayoutChanges="true"
+        android:background="@drawable/control_border"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <View
+        android:visibility="gone"
+        android:id="@+id/fullLayout"
+        android:layout_width="@dimen/WidgetWidthLarge"
+        android:minHeight="@dimen/WidgetWidthLarge"
+        android:layout_height="@dimen/WidgetWidthLarge">
+    </View>
+
+        <View
+            android:id="@+id/previewLayout"
+            android:layout_width="@dimen/WidgetWidth"
+            android:layout_height="@dimen/WidgetHeight"
+            android:minHeight="@dimen/WidgetHeight"></View>
+
+        <LinearLayout
+            android:id="@+id/icon_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/icon_image"
+                android:layout_width="40dip"
+                android:layout_height="40dip"
+                android:layout_gravity="center_horizontal"
+                android:animateLayoutChanges="true"
+                android:src="@drawable/ic_clear_black_24dp" />
+
+            <LinearLayout
+
+                android:id="@+id/widgetSelected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/icon_image"
+                android:layout_centerHorizontal="true"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/icon_text2"
+                    style="@style/VoiceCommandLargeDisabled"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:paddingLeft="8dip"
+                    android:paddingTop="8dip"
+                    android:paddingRight="8dip"
+                    android:text="Sample" />
+
+                <TextView
+                    style="@style/ControlState"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="38dip"
+                    android:gravity="center_horizontal"
+                    android:paddingLeft="8dip"
+                    android:paddingRight="8dip"
+                    android:text="State" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_below="@+id/icon_layout"
+            android:layout_marginTop="32dp"
+            android:orientation="vertical"
+            android:id="@+id/widgetControls"
+            android:layout_width="@dimen/WidgetWidthLarge"
+            android:layout_height="wrap_content"></LinearLayout>
+    </RelativeLayout>
+        <LinearLayout
+            android:layout_below="@+id/previewLayout"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical"
+            android:id="@+id/widgetTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                style="@style/VoiceCommandPrimary"
+                android:gravity="center_horizontal"
+                android:paddingTop="2dip"
+                android:layout_width="@dimen/WidgetWidth"
+                android:layout_height="wrap_content"
+                android:id="@+id/icon_text"
+                android:text="Sample"/>
+
+            <TextView
+                style="@style/ControlState"
+                android:gravity="center_horizontal"
+                android:paddingTop="2dip"
+                android:layout_width="@dimen/WidgetWidth"
+                android:layout_height="wrap_content"
+                android:text="State"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
+
+
+<LinearLayout
+    android:layout_width="wrap_content"  android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:animateLayoutChanges="true"
+    android:id="@+id/mainLayout"
+    android:layout_centerHorizontal="true">
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/fullLayout"
+        android:layout_width="@dimen/WidgetWidthLarge"
+        android:minHeight="@dimen/WidgetWidthLarge"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_radius"
+        android:elevation="20dp"
+        android:orientation="vertical"
+        android:gravity="center">
+        <LinearLayout
+            android:id="@+id/icon_group"
+            android:layout_centerHorizontal="true"
+            android:elevation="20dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/WidgetWidthLarge">
+
+            <ImageView
+                android:layout_width="38dip"
+                android:layout_height="32dip"
+                android:src="@drawable/white_radius"
+                android:layout_marginBottom="8dp"
+                />
+            <LinearLayout
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:id="@+id/widgetSelected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    style="@style/VoiceCommandLargeDisabled"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="8dip"
+                    android:paddingLeft="8dip"
+                    android:paddingRight="8dip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/icon_text2"
+                    android:text="Sample"/>
+
+                <TextView
+                    style="@style/ControlState"
+                    android:gravity="center_horizontal"
+                    android:paddingLeft="8dip"
+                    android:paddingRight="8dip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="State"/>
+            </LinearLayout>
+    </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_below="@+id/icon_group"
+            android:id="@+id/menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></LinearLayout>
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/iconLayout"
+        android:layout_width="@dimen/WidgetWidth"
+        android:minHeight="@dimen/WidgetHeight"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_radius"
+        android:elevation="20dp"
+        android:orientation="vertical"
+        android:gravity="center">
+        <LinearLayout
+            android:layout_marginTop="18dp"
+            android:elevation="20dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:id="@+id/icon_image"
+            android:src="@drawable/white_radius"
+            />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical"
+        android:id="@+id/widgetTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <TextView
+        style="@style/VoiceCommandPrimary"
+        android:gravity="center_horizontal"
+        android:paddingTop="2dip"
+        android:layout_width="@dimen/WidgetWidth"
+        android:layout_height="wrap_content"
+        android:id="@+id/icon_text"
+        android:text="Sample"/>
+
+    <TextView
+        style="@style/ControlState"
+        android:gravity="center_horizontal"
+        android:paddingTop="2dip"
+        android:layout_width="@dimen/WidgetWidth"
+        android:layout_height="wrap_content"
+        android:text="State"/>
+    </LinearLayout>
+</LinearLayout>
+</RelativeLayout>-->

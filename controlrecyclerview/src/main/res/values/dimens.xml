@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="HintSmallest">16dip</dimen>
+    <dimen name="VoiceCommandSmall">18dip</dimen>
+    <dimen name="VoiceCommandMedium">20dip</dimen>
+    <dimen name="VoiceCommandLarge">24dip</dimen>
+    
+    
+    <dimen name="WidgetWidthLarge">220dip</dimen>
+    <dimen name="WidgetHeightLarge">220dip</dimen>
+
+    <dimen name="WidgetWidth">120dp</dimen>
+    <dimen name="WidgetHeight">120dp</dimen>
+</resources>
