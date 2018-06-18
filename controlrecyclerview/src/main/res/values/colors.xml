@@ -11,4 +11,6 @@
     <color name="widgetBorderColor">#CCCCCB</color>
     <color name="voiceHintBackground">#E7E7E7</color>
 
+    <color name="border">#80cccccc</color>
+
 </resources>

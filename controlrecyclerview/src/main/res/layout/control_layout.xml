@@ -1,71 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:animateLayoutChanges="true"
-    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
     android:layout_centerInParent="true"
+    android:background="@drawable/control_border"
     android:gravity="center"
     android:layout_gravity="center"
-    android:padding="18dp"
-    android:layout_width="@dimen/WidgetWidth"  android:layout_height="@dimen/WidgetHeight">
+    >
+<LinearLayout
+    android:id="@+id/widget"
+    android:layout_centerInParent="true"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content"
+    android:layout_width="@dimen/WidgetWidth"  android:minHeight="@dimen/WidgetHeight">
 
     <RelativeLayout
-        android:id="@+id/widget"
         android:layout_centerInParent="true"
-        android:animateLayoutChanges="true"
-        android:background="@drawable/control_border"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/icon_image"
-            android:layout_width="40dip"
-            android:layout_height="40dip"
-            android:layout_gravity="center_horizontal"
-            android:animateLayoutChanges="true"
-            android:src="@drawable/ic_clear_black_24dp" />
-
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content">
         <LinearLayout
-
-            android:id="@+id/widgetSelected"
+            android:id="@+id/icon_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/icon_image"
-            android:layout_centerHorizontal="true"
-            android:orientation="vertical"
-            android:visibility="gone">
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/icon_text"
-                style="@style/VoiceCommandLargeDisabled"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:paddingLeft="8dip"
-                android:paddingTop="8dip"
-                android:paddingRight="8dip"
-                android:text="Sample" />
+            <ImageView
+                android:id="@+id/icon_image"
+                android:layout_width="40dip"
+                android:layout_height="40dip"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_clear_black_24dp" />
 
-            <TextView
-                style="@style/ControlState"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/widgetSelected"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="38dip"
-                android:gravity="center_horizontal"
-                android:paddingLeft="8dip"
-                android:paddingRight="8dip"
-                android:text="State" />
+                android:layout_below="@+id/icon_image"
+                android:layout_centerHorizontal="true"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/icon_text2"
+                    style="@style/VoiceCommandLargeDisabled"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:paddingLeft="8dip"
+                    android:paddingTop="8dip"
+                    android:paddingRight="8dip"
+                    android:text="Sample" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/ControlState"
+                        android:padding="8dp"
+                        android:textSize="@dimen/VoiceCommandSmall"
+                        android:gravity="center_horizontal"
+                        android:paddingTop="2dip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/tertiaryTextColor"
+                        android:text="["/>
+
+                    <TextView
+                        android:id="@+id/stateTxt"
+                        style="@style/ControlState"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:paddingLeft="8dip"
+                        android:paddingRight="8dip"
+                        android:text="State" />
+
+                    <TextView
+                        style="@style/ControlState"
+                        android:padding="8dp"
+                        android:textSize="@dimen/VoiceCommandSmall"
+                        android:textColor="@color/tertiaryTextColor"
+                        android:gravity="center_horizontal"
+                        android:paddingTop="2dip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="]"/>
+                </LinearLayout>
+
+            </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_alignParentBottom="true"
-            android:orientation="vertical"
-            android:id="@+id/controlHolder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></LinearLayout>
-
     </RelativeLayout>
-</RelativeLayout>
+</LinearLayout>
+    <LinearLayout
+        android:animateLayoutChanges="true"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:id="@+id/controlHolder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </LinearLayout>
+</LinearLayout>
+<TextView
+android:id="@+id/icon_text"
+    android:layout_gravity="center_horizontal"
+style="@style/SubControlVoiceCommand"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:gravity="center_horizontal"
+android:paddingLeft="8dip"
+android:paddingTop="8dip"
+android:paddingRight="8dip"
+android:text="Sample" />
+</LinearLayout>
 
     <!--<LinearLayout
         android:orientation="vertical"

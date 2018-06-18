@@ -21,7 +21,9 @@ import realwear.com.controlrecyclerview.adapter.ControlAdapter;
 import realwear.com.controlrecyclerview.adapter.IVoiceAdapter;
 import realwear.com.controlrecyclerview.headtracker.HFHeadtrackerListener;
 import realwear.com.controlrecyclerview.headtracker.HFHeadtrackerManager;
+import realwear.com.controlrecyclerview.model.ControlModel;
 import realwear.com.controlrecyclerview.view.ControlViewMargin;
+import realwear.com.controlrecyclerview.view.ViewSelector;
 import realwear.com.controlrecyclerview.viewholder.ControlViewHolder;
 
 public class ControlRecyclerView extends RecyclerView implements HFHeadtrackerListener {
@@ -39,6 +41,7 @@ public class ControlRecyclerView extends RecyclerView implements HFHeadtrackerLi
      * Paint object to draw with
      */
     private final Paint mPaint = new Paint(Paint.FILTER_BITMAP_FLAG);
+    private ViewSelector mViewSelector;
 
     public ControlRecyclerView(Context context) {
         super(context);
@@ -109,6 +112,7 @@ public class ControlRecyclerView extends RecyclerView implements HFHeadtrackerLi
             }
         });
 
+        onResume();
     }
 
     @Override
@@ -140,9 +144,22 @@ public class ControlRecyclerView extends RecyclerView implements HFHeadtrackerLi
 
         if(mSelectedView && child.equals(findCenterView()))
             return super.drawChild(canvas, child, drawingTime);
+        int index = getLayoutManager().getPosition(child);
+        ControlViewHolder holder = ((ControlViewHolder) findViewHolderForAdapterPosition(index));
 
+        View view = findCenterView();
+            if (view != null) {
+                if (child.equals(view)) {
+                    holder.setFocus(true);
+                    ControlModel model = holder.getModel();
+                    mViewSelector.setTitle(model.getTitle());
+                    mViewSelector.setSubTitle(model.getState());
 
-        Bitmap bitmap = getChildDrawingCache(child);
+                } else {
+                    holder.setFocus(false);
+                }
+            }
+
         // (top,left) is the pixel position of the child inside the list
         final int top = child.getTop();
         final int left = child.getLeft();
@@ -160,12 +177,22 @@ public class ControlRecyclerView extends RecyclerView implements HFHeadtrackerLi
 
         final int distanceX = parentCenterX - absChildCenterX;
 
+        float alpha = Math.max(1, distanceX * 10);
+
+        Bitmap bitmap = getChildDrawingCache(child);
+
+
         prepareMatrix(mMatrix, distanceX, getWidth() / 2);
+
+        if(view.equals(child) && !holder.isSelected()) {
+           // mMatrix.postScale(1.25f, 1.25f);
+        }else{
+           // mMatrix.postScale(1,1);
+        }
 
         mMatrix.preTranslate(-childCenterX, -childCenterY);
         mMatrix.postTranslate(childCenterX, childCenterY);
         mMatrix.postTranslate(left, top);
-
         canvas.drawBitmap(bitmap, mMatrix, mPaint);
         return false;
     }
@@ -177,11 +204,15 @@ public class ControlRecyclerView extends RecyclerView implements HFHeadtrackerLi
         final float translateZ = (float) Math.sqrt((r * r) - (d * d));
         mCamera.save();
         float offset = r - translateZ;
+        if(offset > 100 ){
+            offset = 100;
+        }
         mCamera.translate(0, 0, offset);
 
         mCamera.getMatrix(outMatrix);
         mCamera.restore();
     }
+
     @Override
     protected int getChildDrawingOrder(int childCount, int i) {
         LayoutManager manager = getLayoutManager();
@@ -208,7 +239,7 @@ public class ControlRecyclerView extends RecyclerView implements HFHeadtrackerLi
     }
 
     private void centerView(){
-        LayoutManager manager = getLayoutManager();
+        final LayoutManager manager = getLayoutManager();
         View view = findCenterView();
 
         if(view != null) {
@@ -216,12 +247,28 @@ public class ControlRecyclerView extends RecyclerView implements HFHeadtrackerLi
             gotoPosition(position);
 
             final ControlViewHolder holder = (ControlViewHolder) findViewHolderForAdapterPosition(mCurrentIndex);
+
+            if(mViewSelector != null){
+                ControlModel model = holder.getModel();
+                mViewSelector.setTitle(model.getTitle());
+                mViewSelector.setSubTitle(model.getState());
+            }
+
             holder.setViewHolderListener(new ControlViewHolder.iViewHolder() {
                 @Override
                 public void onViewHolderChanged() {
                     centerView();
 
                     mSelectedView = holder.isSelected();
+
+                    if(mSelectedView) {
+                        mViewSelector.setVisibility(View.GONE);
+                        clearCommands();
+                    }
+                    else{
+                        mViewSelector.setVisibility(View.VISIBLE);
+                        setCommands();
+                    }
                 }
             });
         }
@@ -268,6 +315,10 @@ public class ControlRecyclerView extends RecyclerView implements HFHeadtrackerLi
         return closestChild;
     }
 
+
+    public void setViewSelector(ViewSelector viewHolder){
+        mViewSelector = viewHolder;
+    }
 
     public void reloadCommands() {
         if(!mSelectedView)
@@ -337,7 +388,11 @@ public class ControlRecyclerView extends RecyclerView implements HFHeadtrackerLi
 
     @Override
     public void onOrientationChanged(float pitch, float roll, float v) {
+        if(mSelectedView){
+            return;
+        }
 
+        scrollBy((int)v, 0);
     }
 
     @Override
@@ -375,10 +430,12 @@ public class ControlRecyclerView extends RecyclerView implements HFHeadtrackerLi
                         ViewHolder view = findViewHolderForAdapterPosition(i);
 
                         if (view instanceof ControlViewHolder) {
+                            gotoPosition(i);
                             ((ControlViewHolder) view).getView().callOnClick();
                         }
+                        return;
                     }
-                    return;
+
                 }
             }
 
