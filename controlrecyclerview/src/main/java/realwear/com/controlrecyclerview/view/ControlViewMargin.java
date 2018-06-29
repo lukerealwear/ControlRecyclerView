@@ -31,11 +31,11 @@ public class ControlViewMargin extends RecyclerView.ItemDecoration {
         outRect.right = 8;
 
         if(position == 0) {
-            outRect.left = 500;
+            outRect.left = 400;
         }
 
         if(last == position + 1) {
-            outRect.right = 500;
+            outRect.right = 400;
         }
     }
 }

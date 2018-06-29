@@ -9,12 +9,14 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import realwear.com.controlrecyclerview.ControlRecyclerView;
 import realwear.com.controlrecyclerview.R;
 import realwear.com.controlrecyclerview.model.ControlModel;
 import realwear.com.controlrecyclerview.viewholder.ControlViewHolder;
 
 public abstract class ControlAdapter<VH extends ControlViewHolder> extends RecyclerView.Adapter<VH> implements IVoiceAdapter  {
     public List<ControlModel> mControls = new ArrayList<>();
+    private ControlRecyclerView mRecylerView;
 
     @Override
     public VH onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -30,7 +32,7 @@ public abstract class ControlAdapter<VH extends ControlViewHolder> extends Recyc
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final VH holder, int position) {
+    public void onBindViewHolder(@NonNull final VH holder, final int position) {
         holder.getView().setTag(position);
         holder.getView().setClickable(true);
         holder.getView().setOnClickListener(new View.OnClickListener() {
@@ -40,7 +42,8 @@ public abstract class ControlAdapter<VH extends ControlViewHolder> extends Recyc
                     holder.onCloseItem();
                 }else {
                     holder.onOpenItem();
-
+                    if(mRecylerView != null)
+                        mRecylerView.gotoPosition(position);
                 }
             }
         });
@@ -63,5 +66,13 @@ public abstract class ControlAdapter<VH extends ControlViewHolder> extends Recyc
     public void updateModels(List<ControlModel> controls) {
         mControls = controls;
         notifyDataSetChanged();
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+
+        if(recyclerView instanceof ControlRecyclerView)
+         mRecylerView = (ControlRecyclerView)recyclerView;
     }
 }
